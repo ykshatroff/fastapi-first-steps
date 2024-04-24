@@ -1,0 +1,30 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        function addTodo() {
+            $.ajaxSetup({
+              headers: {"Content-Type": "application/json"}
+            })
+            $.post({
+              url: 'http://localhost:8000/todos',
+              data: JSON.stringify({name: $('#the-name').val(), when: $('#the-when option:checked').val()}),
+              success: function() { alert("Added") },
+
+            })
+        }
+    </script>
+</head>
+<body>
+<h1>Todos</h1>
+<p>
+    <b>Name</b> <input name="name" id="the-name">
+</p>
+<p>
+    <b>When</b> <select id="the-when"><option>today</option><option>tomorrow</option></select>
+</p>
+<button onclick="addTodo()">Add todo</button>
+
+</body>
+</html>
